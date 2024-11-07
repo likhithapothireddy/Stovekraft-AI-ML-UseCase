@@ -1,77 +1,16 @@
-
-
-Notebook 1: Data Exploration - 01_data_exploration.ipynb
-# Import libraries
+import json
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+from sklearn.model_selection import train_test_split
 
-# Load dataset
-df = pd.read_csv("/kaggle/input/retails/online_retail.csv", encoding='utf-8')
+# Load data
+with open('../data/chatbot_intents.json') as file:
+    data = json.load(file)
 
-# Data cleaning and preprocessing
-df.dropna(inplace=True)  # Handle missing values
-df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
-df['Month'] = df['InvoiceDate'].dt.to_period('M')
+# Convert to DataFrame
+intents = []
+for intent in data['intents']:
+    for pattern in intent['patterns']:
+        intents.append((pattern, intent['tag']))
 
-# Explore top-selling products
-top_products = df['StockCode'].value_counts().head(10)
-print("Top Selling Products:\n", top_products)
-
-# Plot sales trends
-monthly_sales = df.groupby('Month')['Quantity'].sum()
-monthly_sales.plot(kind='line')
-plt.title('Monthly Sales Trend')
-plt.show()
-
-# Display the first few rows
-df.head()
-
-# Summary of the dataset
-df.info()
-
-# Check for missing values
-print("Missing values per column:")
-print(df.isnull().sum())
-
-# Summary statistics
-df.describe()
-
-# Visualize target variable (`failure_event`) distribution
-plt.figure(figsize=(8, 6))
-sns.countplot(x='failure_event', data=df)
-plt.title('Distribution of Failure Event')
-plt.show()
-
-# Correlation heatmap
-plt.figure(figsize=(10, 8))
-sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix')
-plt.show()
-
-
-Notebook 2: Feature Engineering - 02_feature_engineering.ipynb
-# Import libraries
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from datetime import datetime
-
-# Load dataset
-df = pd.read_csv('/path/to/predictive_maintenance.csv')
-
-# Convert `timestamp` to datetime and create additional features
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-df['hour'] = df['timestamp'].dt.hour
-df['day_of_week'] = df['timestamp'].dt.dayofweek
-
-# Drop or handle missing values
-df.fillna(df.mean(), inplace=True)  # Or use other imputation methods
-
-# Normalize sensor readings
-sensor_columns = ['sensor_1', 'sensor_2', 'sensor_3']  # Adjust based on actual columns
-scaler = StandardScaler()
-df[sensor_columns] = scaler.fit_transform(df[sensor_columns])
-
-# Check the transformed data
-df.head()
-
+df = pd.DataFrame(intents, columns=['Pattern', 'Tag'])
+print(df.head())
