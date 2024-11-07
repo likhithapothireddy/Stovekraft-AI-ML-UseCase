@@ -1,16 +1,1 @@
-import json
-import pandas as pd
-from sklearn.model_selection import train_test_split
 
-# Load data
-with open('../data/chatbot_intents.json') as file:
-    data = json.load(file)
-
-# Convert to DataFrame
-intents = []
-for intent in data['intents']:
-    for pattern in intent['patterns']:
-        intents.append((pattern, intent['tag']))
-
-df = pd.DataFrame(intents, columns=['Pattern', 'Tag'])
-print(df.head())
