@@ -1,1 +1,7 @@
-
+## Demand Forecasting Datasets
+### Dataset 2: Retail Sales Data
+- **Source**: https://www.kaggle.com/datasets/thedevastator/online-retail-transaction-data
+- **Description**: This data set provides an in-depth look at transactions, product details, and customer information documented by an online retail company based in the UK.
+- **Fields**: InvoiceNo, StockCode,Quantity, InvoiceDate, UnitPrice
+- **License**: Open for non-commercial use
+- **Suitability for Project**: Suitable for demand forecasting.
