@@ -1,1 +1,20 @@
+### Solution for Demand Forecasting:
+1. **Data Preprocessing**:
+   - Cleaning the dataset by handling missing or invalid values.
+   - Converting `InvoiceDate` into a datetime object and extract time-based features like **month**, **day of week**, etc.
+   - Aggregating the data to daily, weekly, or monthly levels for time-series forecasting.
 
+2. **Feature Engineering**:
+   - Creating features for **seasonality**, **holidays**, and **special events** that may affect demand.
+   - Extracting **customer behavior patterns** (e.g., frequency of purchases, products bought together).
+
+3. **Modeling**:
+   - Using time-series models like **ARIMA** or **SARIMA** to forecast demand.
+   - Applying **Prophet** for seasonal adjustments and easy-to-use time-series forecasting.
+   - For complex patterns, implement **LSTM** or **GRU** models to capture long-term dependencies.
+
+4. **Evaluation**:
+   - Measuring forecasting accuracy using **MAE (Mean Absolute Error)**, **RMSE (Root Mean Squared Error)**, and **MAPE (Mean Absolute Percentage Error)**.
+
+5. **Deployment**:
+   - Developing a demand forecasting model that predicts future sales to optimize inventory levels.
