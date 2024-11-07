@@ -43,6 +43,4 @@ data/: Datasets used for training the chatbot.
 notebooks/: Jupyter notebooks for chatbot implementation and evaluation.
 models/: Pre-trained chatbot models.
 scripts/: Python scripts for building the chatbot's conversational abilities.
-.gitignore: Specifies which files/folders to ignore in version control (e.g., temporary files, model outputs).
-LICENSE: Project license (e.g., MIT, Apache 2.0).
-README.md: This file, providing an overview of the project.
+
