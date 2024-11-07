@@ -3,12 +3,15 @@ Project Overview:
 
 This repository contains the implementation of AI/ML solutions for various business problems at Stovekraft. The goal is to optimize operational efficiency, improve customer service, and enhance predictive capabilities. The solutions cover three major use cases:
 
-Demand Forecasting
-Predictive Maintenance
-Customer Service Chatbot
+Demand Forecasting, 
+
+Predictive Maintenance,
+
+Customer Service Chatbot.
 
 
 Use Cases Overview:
+
 1. Demand Forecasting:
 
 Demand forecasting aims to predict future product demand based on historical sales data. This will help Stovekraft optimize inventory, production, and distribution strategies.
