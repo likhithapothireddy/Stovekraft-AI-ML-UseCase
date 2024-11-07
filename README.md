@@ -9,7 +9,8 @@ Customer Service Chatbot
 
 
 Use Cases Overview:
-1. Demand Forecasting
+1. Demand Forecasting:
+
 Demand forecasting aims to predict future product demand based on historical sales data. This will help Stovekraft optimize inventory, production, and distribution strategies.
 
 Key Techniques Used: Time-series models (ARIMA, Prophet, LSTM)
@@ -17,19 +18,28 @@ Key Techniques Used: Time-series models (ARIMA, Prophet, LSTM)
 Data: Historical sales data, seasonality patterns
 
 Output: Future demand predictions for products
-2. Predictive Maintenance
+
+2. Predictive Maintenance:
+
 The predictive maintenance solution predicts the likelihood of equipment failures, reducing downtime and maintenance costs.
 
 Key Techniques Used: Classification models (Random Forest, XGBoost), time-series analysis
+
 Data: Sensor data, maintenance logs
+
 Output: Maintenance schedules, failure predictions
-3. Customer Service Chatbot
+
+3. Customer Service Chatbot:
+
 The chatbot solution automates customer interactions, providing quick answers to frequently asked questions and handling common service queries.
 
 Key Techniques Used: Natural Language Processing (NLP), intent classification (BERT, GPT)
+
 Data: Historical customer interactions, conversation logs
+
 Output: AI-powered chatbot for customer queries
-Directory Structure
+
+Directory Structure:
 Feasibility Report.md: Detailed feasibility analysis for each use case.
 Demand_Forecasting/: Contains all files related to the demand forecasting model.
 data/: Raw and processed data used for demand forecasting.
