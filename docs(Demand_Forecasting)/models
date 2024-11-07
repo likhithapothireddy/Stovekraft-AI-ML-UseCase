@@ -1,1 +1,41 @@
+demand_forecasting_model.pkl: Forecasts future demand for specific products.
+
+# Import libraries
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import pickle
+import numpy as np
+
+# Load dataset and preprocess
+df = pd.read_csv('/path/to/extracted_online_retail.csv')
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+df['TotalSales'] = df['Quantity'] * df['UnitPrice']
+
+# Aggregate data for daily sales
+daily_sales = df.set_index('InvoiceDate').resample('D')['TotalSales'].sum().fillna(0)
+daily_sales['PreviousDaySales'] = daily_sales['TotalSales'].shift(1).fillna(0)
+
+# Prepare features and target
+X = daily_sales[['PreviousDaySales']]
+y = daily_sales['TotalSales']
+
+# Split data
+train_size = int(len(X) * 0.8)
+X_train, X_test = X[:train_size], X[train_size:]
+y_train, y_test = y[:train_size], y[train_size:]
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Evaluate model
+y_pred = model.predict(X_test)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+print("RMSE:", rmse)
+
+# Save model
+with open('models/demand_forecasting_model.pkl', 'wb') as f:
+    pickle.dump(model, f)
+print("Demand Forecasting model saved successfully!")
 
