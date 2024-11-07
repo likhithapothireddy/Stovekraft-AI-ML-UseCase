@@ -1,1 +1,28 @@
+This will perform basic data analysis and exploration on the online_retail.csv dataset.
+#loading and exploring the dataset
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
 
+# List files to check the exact path
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+df = pd.read_csv("/kaggle/input/retails/online_retail.csv", encoding='utf-8')
+df.head()
+
+# Data cleaning and preprocessing
+df.dropna(inplace=True)  # Handle missing values
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+df['Month'] = df['InvoiceDate'].dt.to_period('M')
+
+# Explore top-selling products
+top_products = df['StockCode'].value_counts().head(10)
+print("Top Selling Products:\n", top_products)
+
+# Plot sales trends
+monthly_sales = df.groupby('Month')['Quantity'].sum()
+monthly_sales.plot(kind='line')
+plt.title('Monthly Sales Trend')
+plt.show()
