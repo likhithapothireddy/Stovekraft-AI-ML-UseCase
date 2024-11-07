@@ -1,1 +1,26 @@
+script to train a demand forecasting model after data preprocessing.
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+from sklearn.metrics import mean_absolute_error
+
+# List files to check the exact path
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# Load and preprocess data
+df = pd.read_csv("/kaggle/input/retails/online_retail.csv", encoding='utf-8')
+df.head()
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+df.set_index('InvoiceDate', inplace=True)
+df_resampled = df['Quantity'].resample('M').sum()
+
+# Train ARIMA model
+model = ARIMA(df_resampled, order=(1, 1, 1))
+model_fit = model.fit()
+print(model_fit.summary())
+
+# Forecast and evaluate
+forecast = model_fit.forecast(steps=12)
+print("Forecast for next 12 months:", forecast)
 
