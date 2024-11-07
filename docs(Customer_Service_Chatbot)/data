@@ -1,1 +1,14 @@
-
+## Customer Service Chatbot Datasets
+### Dataset : Chatbot dataset
+- **Source**: https://www.kaggle.com/datasets/niraliivaghani/chatbot-dataset
+- **Description**: This dataset include JSON file made for University chatbot so it contain information about University Inquiry for ordinary puprose. 
+In this file contains list of intents with tags, pattern, reponses and context set. The file include 38 intents or called tags.
+This dataset can be used for training and evaluating chatbot models.
+- **Fields**: This intent file have 38 intents with 4 list called tags, patterns, reponses and context_set.
+Categories:
+Tags: Header of intent
+Patterns: User input(Queries)
+Responses: Chatbot output for user queries.(Answers)
+Context_set(optional): Specify the context in which intent should be used.
+- **License**: Public domain
+- **Suitability for Project**: Ideal for training chatbot models.
