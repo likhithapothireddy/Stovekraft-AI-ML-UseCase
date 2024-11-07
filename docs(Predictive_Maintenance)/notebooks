@@ -1,16 +1,70 @@
+import numpy as np
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
 import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from imblearn.over_sampling import SMOTE
 
-# Load data
-df = pd.read_csv('../data/predictive_maintenance.csv')
 
-# Data summary
-print(df.describe())
-print("Missing values per column:\n", df.isna().sum())
 
-# Visualize sensor data over time
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-df.set_index('timestamp', inplace=True)
-df['sensor_1'].plot(title='Sensor 1 Readings Over Time')
-plt.show()
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Activation, Dense,BatchNormalization
+from tensorflow.keras.optimizers import Adam, SGD
+from tensorflow.keras.layers import Input,Dropout
+from tensorflow.keras.utils import to_categorical,plot_model
 
+
+from scikeras.wrappers import KerasClassifier
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import uniform
+
+
+from sklearn.metrics import confusion_matrix
+import itertools
+cm_plot_labels=['no_failure','failure']
+
+def plot_confusion_matrix(cm,classes,normalize=False,title='Confusion Matrix',cmap=plt.cm.Blues):
+    plt.imshow(cm,interpolation='nearest',cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks=np.arange(len(classes))
+    plt.xticks(tick_marks,classes,rotation=45)
+    plt.yticks(tick_marks,classes)
+
+    if normalize:
+        cm=cm.astype('float')/cm.sum(axis=1)[:,np.newaxis]
+        print('Normalized Confusion Matrix')
+    else:
+        print('Confusion Matrix without normalization')
+    print(cm)
+
+    thresh=cm.max()/2
+    for i,j in itertools.product(range(cm.shape[0]),range(cm.shape[1])):
+        plt.text(j,i,cm[i,j],horizontalalignment='center',color='white' if cm[i,j]>thresh else 'black')
+    plt.tight_layout()
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+
+df=pd.read_csv('predictive_maintenance.csv')
+df.head() 
+
+UDI	Product ID	Type	Air temperature [K]	Process temperature [K]	Rotational speed [rpm]	Torque [Nm]	Tool wear [min]	Target	Failure Type
+0	1	M14860	M	298.1	308.6	1551	42.8	0	0	No Failure
+1	2	L47181	L	298.2	308.7	1408	46.3	3	0	No Failure
+2	3	L47182	L	298.1	308.5	1498	49.4	5	0	No Failure
+3	4	L47183	L	298.2	308.6	1433	39.5	7	0	No Failure
+4	5	L47184	L	298.2	308.7	1408	40.0	9	0	No Failure #output
+
+df['Failure Type'].value_counts()
+Failure Type
+No Failure                  9652   #output
+Heat Dissipation Failure     112
+Power Failure                 95
+Overstrain Failure            78
+Tool Wear Failure             45
+Random Failures               18
+Name: count, dtype: int64
