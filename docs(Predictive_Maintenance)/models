@@ -1,1 +1,50 @@
 
+
+Notebook 1: Data Exploration - 01_data_exploration.ipynb
+# Import libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load dataset
+df = pd.read_csv("/kaggle/input/retails/online_retail.csv", encoding='utf-8')
+
+# Data cleaning and preprocessing
+df.dropna(inplace=True)  # Handle missing values
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+df['Month'] = df['InvoiceDate'].dt.to_period('M')
+
+# Explore top-selling products
+top_products = df['StockCode'].value_counts().head(10)
+print("Top Selling Products:\n", top_products)
+
+# Plot sales trends
+monthly_sales = df.groupby('Month')['Quantity'].sum()
+monthly_sales.plot(kind='line')
+plt.title('Monthly Sales Trend')
+plt.show()
+
+# Display the first few rows
+df.head()
+
+# Summary of the dataset
+df.info()
+
+# Check for missing values
+print("Missing values per column:")
+print(df.isnull().sum())
+
+# Summary statistics
+df.describe()
+
+# Visualize target variable (`failure_event`) distribution
+plt.figure(figsize=(8, 6))
+sns.countplot(x='failure_event', data=df)
+plt.title('Distribution of Failure Event')
+plt.show()
+
+# Correlation heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
