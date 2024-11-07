@@ -1,18 +1,21 @@
 Stovekraft AI/ML Use Cases
-Project Overview
+Project Overview:
+
 This repository contains the implementation of AI/ML solutions for various business problems at Stovekraft. The goal is to optimize operational efficiency, improve customer service, and enhance predictive capabilities. The solutions cover three major use cases:
 
 Demand Forecasting
 Predictive Maintenance
 Customer Service Chatbot
-Each use case is developed as a separate module with its own dataset, model, and scripts.
 
-Use Cases Overview
+
+Use Cases Overview:
 1. Demand Forecasting
 Demand forecasting aims to predict future product demand based on historical sales data. This will help Stovekraft optimize inventory, production, and distribution strategies.
 
 Key Techniques Used: Time-series models (ARIMA, Prophet, LSTM)
+
 Data: Historical sales data, seasonality patterns
+
 Output: Future demand predictions for products
 2. Predictive Maintenance
 The predictive maintenance solution predicts the likelihood of equipment failures, reducing downtime and maintenance costs.
