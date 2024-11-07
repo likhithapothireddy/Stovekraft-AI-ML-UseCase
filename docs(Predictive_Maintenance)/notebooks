@@ -1,1 +1,16 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+df = pd.read_csv('../data/predictive_maintenance.csv')
+
+# Data summary
+print(df.describe())
+print("Missing values per column:\n", df.isna().sum())
+
+# Visualize sensor data over time
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+df.set_index('timestamp', inplace=True)
+df['sensor_1'].plot(title='Sensor 1 Readings Over Time')
+plt.show()
 
