@@ -1,1 +1,45 @@
+chatbot_intent_model.pkl: Classifies user intent and enables customer service chatbot responses.
+
+# Import libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score
+import pickle
+import json
+
+# Load and preprocess the dataset
+with open('/path/to/chatbot_data.json') as f:
+    chatbot_data = json.load(f)
+
+# Prepare data
+texts = []
+labels = []
+for intent in chatbot_data['intents']:
+    for pattern in intent['patterns']:
+        texts.append(pattern)
+        labels.append(intent['tag'])
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(texts, labels, test_size=0.2, random_state=42)
+
+# Define a pipeline for text processing and model training
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer()),
+    ('clf', LogisticRegression(random_state=42))
+])
+
+# Train the model
+pipeline.fit(X_train, y_train)
+
+# Evaluate model
+y_pred = pipeline.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+# Save model
+with open('models/chatbot_intent_model.pkl', 'wb') as f:
+    pickle.dump(pipeline, f)
+print("Chatbot intent model saved successfully!")
 
