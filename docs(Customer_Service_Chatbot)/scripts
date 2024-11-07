@@ -1,1 +1,25 @@
+This script can be used to train a basic intent classification model for the chatbot.
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
+
+# Load and preprocess
+df = pd.read_csv('../data/processed_chatbot_data.csv')
+X = df['Pattern']
+y = df['Tag']
+
+# Vectorize and split
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(X)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train model
+model = MultinomialNB()
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print("Intent Classification Accuracy:", accuracy_score(y_test, y_pred))
 
