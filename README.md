@@ -40,20 +40,36 @@ Data: Historical customer interactions, conversation logs
 Output: AI-powered chatbot for customer queries
 
 Directory Structure:
+
 Feasibility Report.md: Detailed feasibility analysis for each use case.
+
 Demand_Forecasting/: Contains all files related to the demand forecasting model.
+
 data/: Raw and processed data used for demand forecasting.
+
 notebooks/: Jupyter notebooks for model training and evaluation.
+
 models/: Saved models (e.g., pickle files) after training.
+
 scripts/: Python scripts for preprocessing, training, and making predictions.
+
 Predictive_Maintenance/: Contains all files related to the predictive maintenance model.
+
 data/: Raw and processed data used for predictive maintenance.
+
 notebooks/: Jupyter notebooks for model training and evaluation.
+
 models/: Saved models (e.g., pickle files) after training.
+
 scripts/: Python scripts for data preprocessing and model predictions.
+
 Customer_Service_Chatbot/: Contains all files related to the chatbot development.
+
 data/: Datasets used for training the chatbot.
+
 notebooks/: Jupyter notebooks for chatbot implementation and evaluation.
+
 models/: Pre-trained chatbot models.
+
 scripts/: Python scripts for building the chatbot's conversational abilities.
 
