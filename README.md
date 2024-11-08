@@ -55,7 +55,7 @@ data/: Raw and processed data used for demand forecasting.
 
 notebooks/: Jupyter notebooks for model training and evaluation.
 
-models/: Saved models (e.g., pickle files) after training.
+models/: Saved models after training.
 
 scripts/: Python scripts for preprocessing, training, and making predictions.
 
