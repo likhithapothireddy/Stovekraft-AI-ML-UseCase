@@ -5,8 +5,8 @@ This section assesses the feasibility of implementing the proposed solutions bas
 
 ### Predictive Maintenance Solution
 
-- **Feasibility**: The dataset is well-suited for predictive maintenance. The solution involves time-series analysis, data preprocessing (handling missing values and time-based feature extraction)
-and classification models (Random Forest, XGBoost).
+- **Feasibility**:The solution involves time-series analysis, data preprocessing (handling missing values and time-based feature extraction)
+and classification models.
 
 - **Technical Requirements**:
   - Need to preprocess the data, including normalizing sensor readings and handling missing values.
@@ -19,7 +19,7 @@ and classification models (Random Forest, XGBoost).
 
 ### Demand Forecasting Solution
 
-- **Feasibility**: The retail sales dataset is ideal for demand forecasting. The solution involves aggregating sales data, extracting seasonal features, and training time-series models (ARIMA, Prophet, or LSTM).
+- **Feasibility**: The retail sales dataset is ideal for demand forecasting. The solution involves aggregating sales data, extracting seasonal features, and training time-series models.
 
 - **Technical Requirements**:
   - Need to clean and aggregate the data into time-series formats (daily, weekly, monthly).
